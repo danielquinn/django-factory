@@ -1,0 +1,36 @@
+Sometimes basic model inheritance isn't enough.  Sometimes you want to do fun
+stuff like fetch an object based on an id... without knowing the subclass for
+that object.  That's what this does.  An example will probably help explain
+
+
+    # models.py
+
+    class Product(Factory):
+        name = models.CharField(max_length=128)
+
+
+
+    class AwesomeProduct(Product):
+        awesomeness = models.PositiveIntegerField()
+
+
+
+    class OtherProduct(Product):
+        otherstuff = models.TextField()
+
+
+
+
+    # views.py
+
+    def myview():
+        Product.objects.acquire(pk=1) # instance of Product
+        Product.objects.acquire(pk=2) # instance of AwesomeProduct
+        Product.objects.acquire(pk=3) # instance of OtherProduct
+
+
+This sort of thing is handy when you want to attach additional properties to
+different model classes, but want them all to be treated the same without
+having to do complex detection.  An example of this might be a product
+checkout, where you would want to allow a user to buy any number of products
+and don't much care what kind of products they are.
