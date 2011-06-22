@@ -23,14 +23,25 @@ that object.  That's what this does.  An example will probably help explain
 
     # views.py
 
-    def myview():
+    def myview(id=None):
+
+        # Some less-than-obvious uses
         Product.objects.acquire(pk=1) # instance of Product
         Product.objects.acquire(pk=2) # instance of AwesomeProduct
         Product.objects.acquire(pk=3) # instance of OtherProduct
 
+        # A slightly more useful case
+        Product.objects.all() # A list of product objects
+
+        # A more practical use case
+        Product.objects.get(pk=id) # An instance of whatever object belongs to that id
+
 
 This sort of thing is handy when you want to attach additional properties to
 different model classes, but want them all to be treated the same without
-having to do complex detection.  An example of this might be a product
-checkout, where you would want to allow a user to buy any number of products
-and don't much care what kind of products they are.
+having to do complex detection.
+
+An example of this might be a product checkout, where you would want to
+allow a user to buy any number of products and don't much care what kind of
+products they are, or a REST server where a user requests info on product X
+without knowing its subclass.
