@@ -1,8 +1,8 @@
-./setup.py
-./src/django_factory/views.py
-./src/django_factory/fixtures/inheritance.json
-./src/django_factory/__init__.py
-./src/django_factory/models.py
-./src/django_factory/tests.py
-./src/django_factory/forms.py
-./README
+setup.py
+src/django_factory/views.py
+src/django_factory/fixtures/inheritance.json
+src/django_factory/__init__.py
+src/django_factory/models.py
+src/django_factory/tests.py
+src/django_factory/forms.py
+README
