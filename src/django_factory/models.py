@@ -24,14 +24,13 @@ class FactoryManager(models.Manager):
             FROM
                 %(factory)s
             WHERE
-                %(where_selector)s = %%(where_val)s
+                %(where_selector)s = %%s
         """ % {
             "where_selector": "%s.%s" % (self.model._meta.db_table, qn(where_selector)),
             "factory": qn(self.model._meta.db_table),
         }
-
         cursor = connection.cursor()
-        cursor.execute(query, {"where_val": where_val})
+        cursor.execute(query, params=(where_val,))
         result = cursor.fetchone()
         if result:
             klass = self.model.get_factorypaths()[result[0]]
