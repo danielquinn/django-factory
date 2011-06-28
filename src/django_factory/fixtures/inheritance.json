@@ -1,0 +1,63 @@
+[
+
+	{
+		"pk": 1,
+		"model": "django_factory.product",
+		"fields": {
+			"_factorypath": "django_factory.tests.AlphaProduct",
+			"name": "product:alpha"
+		}
+	},
+	{
+		"pk": 2,
+		"model": "django_factory.product",
+		"fields": {
+			"_factorypath": "django_factory.tests.BravoProduct",
+			"name": "product:bravo"
+		}
+	},
+	{
+		"pk": 3,
+		"model": "django_factory.product",
+		"fields": {
+			"_factorypath": "django_factory.tests.CharlieProduct",
+			"name": "product:charlie"
+		}
+	},
+
+	{
+		"pk": 1,
+		"model": "django_factory.alphaproduct",
+		"fields": {
+			"product_ptr": 1,
+			"alpha": "1"
+		}
+	},
+
+	{
+		"pk": 2,
+		"model": "django_factory.bravoproduct",
+		"fields": {
+			"product_ptr": 2,
+			"bravo": "2"
+		}
+	},
+	{
+		"pk": 3,
+		"model": "django_factory.bravoproduct",
+		"fields": {
+			"product_ptr": 3,
+			"bravo": "3"
+		}
+	},
+
+	{
+		"pk": 3,
+		"model": "django_factory.charlieproduct",
+		"fields": {
+			"bravoproduct_ptr": 3,
+			"charlie": "3"
+		}
+	}
+
+]
