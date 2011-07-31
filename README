@@ -1,6 +1,6 @@
 Sometimes basic model inheritance isn't enough.  Sometimes you want to do fun
 stuff like fetch an object based on an id... without knowing the subclass for
-that object.  That's what this does.  An example will probably help explain
+that object.  That's what this does.  An example will probably help explain.
 
 
     # models.py
@@ -31,7 +31,10 @@ that object.  That's what this does.  An example will probably help explain
         Product.objects.acquire(pk=3) # instance of OtherProduct
 
         # A slightly more useful case
-        Product.objects.all() # A list of product objects
+        products = Product.objects.all() # A list of product objects
+
+        products[2]            # instance of Product
+        products[2].get_meta() # instance of OtherProduct
 
 
 This sort of thing is handy when you want to attach additional properties to
