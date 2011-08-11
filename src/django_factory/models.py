@@ -57,7 +57,8 @@ class Factory(models.Model):
     objects = FactoryManager()
 
     def save(self, *a, **kwa):
-        self._factorypath = self.get_factorypath()
+        if not self._factorypath:
+            self._factorypath = self.get_factorypath()
         super(Factory, self).save(*a, **kwa)
 
 
