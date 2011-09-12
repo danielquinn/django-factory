@@ -52,7 +52,7 @@ class Factory(models.Model):
 
     _paths = {} # Cache of paths to classes that subclass the parent factory
 
-    _factorypath = models.CharField(max_length=255)
+    _factorypath = models.CharField(max_length=255,db_index=True)
 
     objects = FactoryManager()
 
