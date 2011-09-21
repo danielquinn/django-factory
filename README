@@ -6,35 +6,54 @@ that object.  That's what this does.  An example will probably help explain.
     # models.py
 
     class Product(Factory):
+
         name = models.CharField(max_length=128)
 
-
-
-    class AwesomeProduct(Product):
-        awesomeness = models.PositiveIntegerField()
+        def __unicode__(self):
+            return self.name
 
 
 
-    class OtherProduct(Product):
-        otherstuff = models.TextField()
+    class Toy(Product):
+
+        minimum_age = models.PositiveIntegerField()
+
+        def __unicode__(self):
+            return "%s:%d" % (self.name, self.minimum_age)
+
+
+
+    class Cigar(Product):
+
+        origin = models.ForeignKey(Country)
+
+        def __unicode__(self):
+            return "%s:%d" % (self.name, self.origin.name)
 
 
 
 
     # views.py
 
-    def myview(id=None):
+    def myview(request, id=None):
 
-        # Some less-than-obvious uses
-        Product.objects.acquire(pk=1) # instance of Product
-        Product.objects.acquire(pk=2) # instance of AwesomeProduct
-        Product.objects.acquire(pk=3) # instance of OtherProduct
+        Toy.objects.create(name="My Toy", minimum_age=7)
+        Cigar.objects.create(name="Cubans", origin=Country.objects.get(slug="cuba"))
 
-        # A slightly more useful case
+        Product.objects.acquire(pk=1)
+        # <Product: "My Toy">
+
+        Product.objects.acquire(pk=2)
+        # <Toy: "My Toy:7">
+
+        Product.objects.acquire(pk=3)
+        # <Cigar: "Cubans:Cuba">
+
         products = Product.objects.all() # A list of product objects
+        [<Product: "My Toy">, <Product: "Cubans">]
 
-        products[2]            # instance of Product
-        products[2].get_meta() # instance of OtherProduct
+        products[1].get_meta()
+        <Cigar: "Cubans:Cuba">
 
 
 This sort of thing is handy when you want to attach additional properties to
@@ -47,4 +66,3 @@ products they are, or a REST server where a user requests info on product X
 without knowing its subclass.  This way, you can process all products as a
 group with the checkout, but return specific extraneous data with the REST
 call.
-
