@@ -1,5 +1,5 @@
 from django import forms
-from core.models import Factory
+from django_factory.models import Factory
 
 class FactoryForm(forms.ModelForm):
     """
@@ -8,5 +8,4 @@ class FactoryForm(forms.ModelForm):
 
     class Meta:
         model = Factory
-        exlude = ("_factorypath",)
-
+        exclude = ("_factorypath",)
