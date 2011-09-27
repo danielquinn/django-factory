@@ -30,7 +30,7 @@ class FactoryManager(models.Manager):
             "factory": qn(self.model._meta.db_table),
         }
         cursor = connection.cursor()
-        cursor.execute(query, params=(where_val,))
+        cursor.execute(query, (where_val,))
         result = cursor.fetchone()
         if result:
             klass = self.model.get_factorypaths()[result[0]]
