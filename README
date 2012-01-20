@@ -40,13 +40,13 @@ that object.  That's what this does.  An example will probably help explain.
         Toy.objects.create(name="My Toy", minimum_age=7)
         Cigar.objects.create(name="Cubans", origin=Country.objects.get(slug="cuba"))
 
-        Product.objects.acquire(pk=1)
+        Product.objects.get(pk=1)
         # <Product: "My Toy">
 
-        Product.objects.acquire(pk=2)
+        Product.objects.acquire(pk=1)
         # <Toy: "My Toy:7">
 
-        Product.objects.acquire(pk=3)
+        Product.objects.acquire(pk=2)
         # <Cigar: "Cubans:Cuba">
 
         products = Product.objects.all() # A list of product objects
