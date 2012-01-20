@@ -8,4 +8,4 @@ class FactoryForm(forms.ModelForm):
 
     class Meta:
         model = Factory
-        exclude = ("_factorypath",)
+        exclude = ["_factorypath",]
