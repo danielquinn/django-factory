@@ -34,7 +34,7 @@ class FactoryManager(models.Manager):
         cursor = connection.cursor()
         cursor.execute(query, (where_val,))
         result = cursor.fetchone()
-        if result:
+        if result and self.model.get_factorypaths():
             cls = self.model.get_factorypaths()[result[0]]
             return cls.objects.get(**kwa)
 
