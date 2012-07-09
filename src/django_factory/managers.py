@@ -40,7 +40,7 @@ class FactoryManager(models.Manager):
         """ % {
             "where_selector": "%s.%s" % (root.db_table, qn(where_selector)),
             "factory": qn(root.db_table),
-            }
+        }
 
         cursor = connection.cursor()
         cursor.execute(query, (where_val,))
