@@ -1,3 +1,9 @@
+# django-factory
+
+## Don't use this
+I wrote this years ago to solve a polymorphism problem that wasn't really collectively solved by the wider django community yet.  This has long since changed however, so instead I recommend that you check out the excellent [django-polymorphic](https://github.com/chrisglass/django_polymorphic/) which appears to be the (well maintained) reigning champion in this sphere.
+
+
 Sometimes basic model inheritance isn't enough.  Sometimes you want to do fun
 stuff like fetch an object based on an id... without knowing the subclass for
 that object.  That's what this does.  An example will probably help explain.
